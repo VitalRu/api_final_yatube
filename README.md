@@ -1,79 +1,50 @@
-# Финальная версия проекта YaMDB, API-версия.
-
-![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
-![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
-![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
-
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Straga33/api_final_yatube)
-![GitHub repo size](https://img.shields.io/github/repo-size/Straga33/api_final_yatube)
-![GitHub](https://img.shields.io/github/license/Straga33/api_final_yatube)
-![pythonversion](https://img.shields.io/badge/python-%3E%3D3.7-blue)
-
 ## Описание:
 
-Финальная версия проекта YaMDB, API-версия. Применены все знания теоретической части по теме django-rest-framework. Это социальная сеть для публикации своих постов. Поддерживает разные тематические группы. Авторство и подписки.  
-
-## Стек технологий:
-
-* Python 3.8
-* Django framework 2.2.16
-* Django REST Framewor 3.12.4
-* PyJWT 2.1.0
-* Pillow 8.3.1
-* Requests 2.26.0
+Проект YaTube-API. Это социальная сеть, где пользователи могут публиковать свои
+посты, размещать их в группах, комментировать свои посты и посты других
+пользователей, а также подписываться на других авторов.
 
 ## Установка:
 
-Перейти в каталог с проектом
+Находясь в каталоге проекта, создать и активировать виртуальное окружение:
 
-```
-cd api_final_yatube
-```
 
-Cоздать и активировать виртуальное окружение:
-
+для Linux
 ```
 python3 -m venv venv
-```
 
-```
 source env/bin/activate
 ```
 
+для Windows
 ```
-python3 -m pip install --upgrade pip
+python -m venv venv
+
+source venv/Scripts/activate
 ```
 
 Установить зависимости из файла requirements.txt:
-
 ```
 pip install -r requirements.txt
 ```
 
 Выполнить миграции:
-
 ```
-python3 manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 Запустить проект:
-
 ```
-python3 manage.py runserver
+python manage.py runserver
 ```
 
-## Примеры:
-
-полный список примеров API: 
+Документация проекта: 
 ```
 http://127.0.0.1:8000/redoc/
 ```
 
-### Получить список всех публикаций. 
-
-При указании параметров limit и offset выдача работаtn с пагинацией.
-
-запрос:
+### Примеры запросов
 
 ```
 GET http://127.0.0.1:8000/api/v1/posts/?limit=2

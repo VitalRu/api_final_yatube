@@ -7,13 +7,11 @@ User = get_user_model()
 class Group(models.Model):
     title = models.CharField(
         max_length=200,
-        verbose_name='Заголовок группы',
-        help_text='Заголовок новой группы',
+        verbose_name='Имя группы',
     )
     slug = models.SlugField(
         unique=True,
-        verbose_name='Идентификатор',
-        help_text='Идентификатор группы',
+        verbose_name='Slug группы',
     )
     description = models.TextField(
         verbose_name='Описание',
@@ -32,9 +30,11 @@ class Post(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='posts')
+        User, on_delete=models.CASCADE, related_name='posts'
+    )
     image = models.ImageField(
-        upload_to='posts/', null=True, blank=True)
+        upload_to='posts/', null=True, blank=True
+    )
     group = models.ForeignKey(
         Group,
         on_delete=models.SET_NULL,
@@ -56,7 +56,7 @@ class Comment(models.Model):
         Post, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
     created = models.DateTimeField(
-        'Дата добавления', auto_now_add=True, db_index=True)
+        'Дата комментария', auto_now_add=True, db_index=True)
 
 
 class Follow(models.Model):
@@ -80,6 +80,10 @@ class Follow(models.Model):
             models.UniqueConstraint(
                 fields=('user', 'following'),
                 name='detection_user_following'
+            ),
+            models.CheckConstraint(
+                check=~models.Q(following=models.F('user')),
+                name='author_not_user'
             ),
         )
 
