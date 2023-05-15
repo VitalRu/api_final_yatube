@@ -33,7 +33,7 @@ class PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsOwnerOrReadOnly, IsAuthenticatedOrReadOnly)
     pagination_class = LimitOffsetPagination
     filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('group',)
+    filterset_fields = ('author', 'group',)
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
