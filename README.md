@@ -44,73 +44,73 @@ python manage.py runserver
 http://127.0.0.1:8000/redoc/
 ```
 
-### Примеры запросов
+## Примеры запросов
 
-```
-GET http://127.0.0.1:8000/api/v1/posts/?limit=2
-```
+### Регистрация нового пользователя
 
-ответ:
+POST-запрос
+```
+http://127.0.0.1:8000/api/v1/users/
+```
 ```
 {
-  "count": 123,
-  "next": "http://api.example.org/accounts/?offset=400&limit=100",
-  "previous": "http://api.example.org/accounts/?offset=200&limit=100",
-  "results": [
+    "username": "user_one",
+    "password": "veRy5tr0nGpASSw0rd"
+}
+```
+
+### Получение JWT-токена
+
+POST-запрос
+```
+http://127.0.0.1:8000/api/v1/jwt/create/
+```
+
+### Создание публикации.
+
+POST-запрос:
+
+
+```
+http://127.0.0.1:8000/api/v1/posts/
+```
+
+Тело запроса
+```
+{
+    "text": "some post text"
+}
+```
+
+Ответ
+```
+
+{
+    "id": 1,
+    "author": "user_one",
+    "text": "some post text",
+    "pub_date": "2023-05-15T12:15:03.615183Z",
+    "image": null,
+    "group": null
+}
+```
+### Получение списка всех постов
+
+GET-запрос
+```
+http://127.0.0.1:8000/api/v1/posts/
+```
+
+пример ответа
+```
+[
     {
-      "id": 0,
-      "author": "string",
-      "text": "string",
-      "pub_date": "2021-10-14T20:41:29.648Z",
-      "image": "string",
-      "group": 0
+        "id": 1,
+        "author": "user_one",
+        "text": "some post text",
+        "pub_date": "2023-05-15T12:15:03.615183Z",
+        "image": null,
+        "group": null
     }
-  ]
-}
+]
 ```
-
-### Обновление публикации. 
-
-Обновление публикации по id. Обновить публикацию может только автор публикации. Анонимные запросы запрещены.
-
-запрос:
-
-```
-PUT http://127.0.0.1:8000/api/v1/posts/{id}/
-
-{
-"text": "string",
-"image": "string",
-"group": 0
-}
-```
-
-### Удаление комментария.
-
-Удаление комментария к публикации по id. Обновить комментарий может только автор комментария. Анонимные запросы запрещены.
-
-запрос:
-
-```
-DELETE http://127.0.0.1:8000/api/v1/posts/{post_id}/comments/{id}/
-```
-
-### Получить JWT-токен.
-
-Получение JWT-токена.
-
-запрос:
-
-```
-POST http://127.0.0.1:8000/api/v1/jwt/create/
-
-{
-"username": "string",
-"password": "string"
-}
-```
-
-### Разработчик:
-
-Басков Михаил (baem-festa@yandex.ru)
-
