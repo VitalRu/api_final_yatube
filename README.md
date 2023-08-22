@@ -4,6 +4,9 @@
 посты, размещать их в группах, комментировать свои посты и посты других
 пользователей, а также подписываться на других авторов.
 
+![Static Badge](https://img.shields.io/badge/python-3.9.10-blue?style=for-the-badge&logo=python&labelColor=yellow) ![Static Badge](https://img.shields.io/badge/django-%25?style=for-the-badge&logo=django) ![Static Badge](https://img.shields.io/badge/REST_API-%25?style=for-the-badge&color=279EFF)
+
+
 ## Установка:
 
 Находясь в каталоге проекта, создать и активировать виртуальное окружение:
